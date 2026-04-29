@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+/* maplibre-gl installed */
+/*
+  GO-Wanus Green — editorial dark
+  Base: near-black with cool green undertone · Cream: body copy
+  Ink: deep green for surfaces · Mint & canopy: accents only (no full-screen lime)
+*/
+:root {
+  --base: #070a09;
+  --base-mid: #0f1612;
+  --elevated: #141f1a;
+  --ink: #1a3026;
+  --ink-soft: #243d30;
+  --cream: #e8ebe6;
+  --cream-muted: rgba(232, 235, 230, 0.65);
+  --mint: #6eb89a;
+  --mint-bright: #88c9a1;
+  --canopy-accent: #9bbb59;
+  --rust: #c45c3e;
+  --rust-deep: #a64d32;
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-light: rgba(136, 201, 161, 0.08);
+  --shadow-deep: rgba(0, 0, 0, 0.45);
+
+  /* Legacy / Tailwind token bridges */
+  --field: var(--base);
+  --field-deep: var(--base-mid);
+  --field-glow: rgba(110, 184, 154, 0.12);
+  --forest: var(--ink);
+  --forest-mid: var(--ink-soft);
+  --canopy: var(--canopy-accent);
+  --arch: var(--cream);
+  --background: var(--base);
+  --foreground: var(--cream);
+}
+
+@theme inline {
+  --color-base: var(--base);
+  --color-ink: var(--ink);
+  --color-field: var(--base);
+  --color-field-deep: var(--base-mid);
+  --color-cream: var(--cream);
+  --color-forest: var(--ink);
+  --color-forest-mid: var(--ink-soft);
+  --color-rust: var(--rust-deep);
+  --color-mint: var(--mint-bright);
+  --color-canopy: var(--canopy-accent);
+  --color-arch: var(--cream);
+  --color-glass: var(--glass);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth fade between sections — applied via section gradient overlays */
+section {
+  position: relative;
+}
+section::before {
+  content: "";
+  position: absolute;
+  inset-x: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(136, 201, 161, 0.08) 30%, rgba(125, 211, 252, 0.06) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--base);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(110, 184, 154, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 95% 30%, rgba(110, 184, 154, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 5% 60%, rgba(109, 40, 217, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 50% 85%, rgba(110, 184, 154, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 90%, rgba(109, 40, 217, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--cream);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@keyframes mesh-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(2%, -3%) scale(1.03);
+  }
+  66% {
+    transform: translate(-2%, 2%) scale(0.98);
+  }
+}
+
+@keyframes grid-flow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(3px);
+  }
+}
+
+@keyframes dash-trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(400%);
+  }
+}
+
+@keyframes ring-breathe {
+  0%,
+  100% {
+    transform: scale(0.75);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.mesh-blob {
+  animation: mesh-drift 18s ease-in-out infinite;
+}
+
+.grid-animated {
+  background-image: linear-gradient(
+      90deg,
+      rgba(136, 201, 161, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(136, 201, 161, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: grid-flow 22s linear infinite;
+}
+
+.float-particle {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.svg-trace {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash-trace 2.5s ease forwards;
+}
+
+.linger-pulse {
+  animation: ring-breathe 2.8s ease-in-out infinite;
+}
+
+.scan-sweep {
+  animation: scan-line 4.5s ease-in-out infinite;
+}
+
+.shimmer-bar {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(136, 201, 161, 0.1) 45%,
+    rgba(255, 255, 255, 0.03) 90%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes linger-wave {
+  0% {
+    transform: scale(0.45);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+.linger-ring {
+  animation: linger-wave 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes linger-core-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 18px rgba(110, 184, 154, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(136, 201, 161, 0.45));
+  }
+}
+
+.linger-core-glow {
+  animation: linger-core-glow 3s ease-in-out infinite;
+}
