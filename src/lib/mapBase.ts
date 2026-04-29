@@ -200,7 +200,7 @@ function transformCoordinatesTo4326(
 function detectEpsg3857ByRange(fc: FeatureCollection): boolean {
   for (const feature of fc.features) {
     const geom = feature.geometry;
-    if (!geom) continue;
+    if (!geom || geom.type === "GeometryCollection") continue;
     const stack: unknown[] = [geom.coordinates];
     while (stack.length) {
       const cur = stack.pop();
