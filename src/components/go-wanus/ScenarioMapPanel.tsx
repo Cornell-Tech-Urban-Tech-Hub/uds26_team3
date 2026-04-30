@@ -42,9 +42,9 @@ function useScenarioLayers(): ScenarioLayers {
     async function load() {
       try {
         const [fullRes, newRes, streetRes] = await Promise.all([
-          fetch("/data_from_gama/bid_trees_full.geojson"),
-          fetch("/data_from_gama/bid_trees_new.geojson"),
-          fetch("/data_from_gama/street_change.geojson"),
+          fetch("/uds26_team3/data_from_gama/bid_trees_full.geojson"),
+          fetch("/uds26_team3/data_from_gama/bid_trees_new.geojson"),
+          fetch("/uds26_team3/data_from_gama/street_change.geojson"),
         ]);
         if (!fullRes.ok || !newRes.ok || !streetRes.ok) {
           throw new Error("Failed to load scenario layers");
