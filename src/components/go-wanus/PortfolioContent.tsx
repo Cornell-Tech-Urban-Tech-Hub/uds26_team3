@@ -362,53 +362,55 @@ export function PortfolioContent() {
                 Planned tree locations are predefined to maximize ecological
                 benefits.
               </p>
-              <div className="mx-auto mt-6 grid max-w-5xl gap-4 md:grid-cols-3">
-                {scenarioCards.map((item) => {
-                  const active = scenario === item.id;
-                  return (
-                    <motion.button
-                      key={item.id}
-                      type="button"
-                      onClick={() => setScenario(item.id)}
-                      aria-pressed={active}
-                      className={`relative overflow-hidden rounded-2xl border p-5 text-left backdrop-blur-sm transition ${
-                        active
-                          ? "border-mint/45 bg-white/[0.08] shadow-[0_0_30px_rgba(136,201,161,0.16)]"
-                          : "border-white/[0.08] bg-white/[0.03] hover:border-mint/28 hover:bg-white/[0.055]"
-                      }`}
-                      initial={{ opacity: 0, y: 12 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.99 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {active && (
-                        <motion.span
-                          className="absolute inset-0 bg-gradient-to-r from-mint/10 to-transparent"
-                          layoutId="scenario-card-active"
-                          transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                        />
-                      )}
-                      <p
-                        className={`relative font-mono text-[0.65rem] uppercase tracking-[0.24em] ${
-                          active ? "text-mint" : "text-mint/70"
+              <div className="mx-auto mt-6 grid max-w-6xl items-stretch gap-5 lg:grid-cols-[minmax(220px,0.34fr)_minmax(0,1fr)]">
+                <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+                  {scenarioCards.map((item) => {
+                    const active = scenario === item.id;
+                    return (
+                      <motion.button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setScenario(item.id)}
+                        aria-pressed={active}
+                        className={`relative flex h-full min-h-[168px] flex-col overflow-hidden rounded-2xl border p-5 text-left backdrop-blur-sm transition ${
+                          active
+                            ? "border-mint/45 bg-white/[0.08] shadow-[0_0_30px_rgba(136,201,161,0.16)]"
+                            : "border-white/[0.08] bg-white/[0.03] hover:border-mint/28 hover:bg-white/[0.055]"
                         }`}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.99 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4 }}
                       >
-                        {item.id}
-                      </p>
-                      <h4 className="relative mt-2 font-[family-name:var(--font-display)] text-xl text-cream">
-                        {item.title}
-                      </h4>
-                      <p className="relative mt-3 text-sm leading-relaxed text-arch/75">
-                        {item.body}
-                      </p>
-                    </motion.button>
-                  );
-                })}
-              </div>
-              <div className="mt-8 mx-auto max-w-5xl">
-                <ScenarioMapPanel scenario={scenario} />
+                        {active && (
+                          <motion.span
+                            className="absolute inset-0 bg-gradient-to-r from-mint/10 to-transparent"
+                            layoutId="scenario-card-active"
+                            transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                          />
+                        )}
+                        <p
+                          className={`relative font-mono text-[0.65rem] uppercase tracking-[0.24em] ${
+                            active ? "text-mint" : "text-mint/70"
+                          }`}
+                        >
+                          {item.id}
+                        </p>
+                        <h4 className="relative mt-2 font-[family-name:var(--font-display)] text-xl text-cream">
+                          {item.title}
+                        </h4>
+                        <p className="relative mt-3 text-sm leading-relaxed text-arch/75">
+                          {item.body}
+                        </p>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+                <div>
+                  <ScenarioMapPanel scenario={scenario} />
+                </div>
               </div>
             </div>
 
@@ -420,6 +422,7 @@ export function PortfolioContent() {
               <h3 className="mt-2 font-[family-name:var(--font-display)] text-2xl text-arch md:text-3xl">
                 Species and Planting Strategies
               </h3>
+              <SpeciesAccordion />
               <motion.div
                 className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl"
                 {...fadeInUp}
@@ -446,9 +449,6 @@ export function PortfolioContent() {
                   ))}
                 </div>
               </motion.div>
-              <div className="mt-8">
-                <SpeciesAccordion />
-              </div>
             </div>
           </div>
         </section>
@@ -764,7 +764,7 @@ export function PortfolioContent() {
               <div className="mt-4 space-y-4">
                 {references.papers.map((paper) => (
                   <div key={paper.href} className="border-t border-white/[0.07] pt-3">
-                    <p className="text-sm leading-relaxed text-cream/90">
+                    <p className="text-sm leading-relaxed text-mint/90">
                       {paper.label}
                     </p>
                     <a

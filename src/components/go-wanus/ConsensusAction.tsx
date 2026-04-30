@@ -36,6 +36,31 @@ export function ConsensusAction() {
   const [activeStep, setActiveStep] = useState<number | null>(steps[0].id);
 
   const active = steps.find((s) => s.id === activeStep);
+  const renderStepButton = (step: (typeof steps)[number], isActive: boolean) => (
+    <motion.button
+      type="button"
+      onClick={() => setActiveStep(isActive ? null : step.id)}
+      className={`w-full rounded-xl border p-4 text-left transition ${
+        isActive
+          ? "border-mint/40 bg-mint/[0.08]"
+          : "border-white/[0.08] bg-white/[0.03] hover:border-mint/25 hover:bg-white/[0.06]"
+      }`}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <p className="font-mono text-[0.55rem] uppercase tracking-widest text-mint/60">
+        {step.month}
+      </p>
+      <p className="mt-1 text-sm font-medium text-cream">
+        {step.title}
+      </p>
+      {step.href && (
+        <p className="mt-1 break-all font-mono text-[0.5rem] text-mint/50">
+          ↗ {step.href.replace("https://", "")}
+        </p>
+      )}
+    </motion.button>
+  );
 
   return (
     <section id="stakeholders" className="scroll-mt-24 px-4 py-20 sm:px-6">
@@ -180,7 +205,32 @@ export function ConsensusAction() {
             <p className="mb-5 text-lg font-bold text-white">
               Click any timeline card
             </p>
-            <div className="relative">
+            <div className="relative sm:hidden">
+              <div className="absolute left-4 top-0 h-full w-px bg-mint/20" />
+              <div className="flex flex-col gap-6">
+                {steps.map((step) => {
+                  const isActive = activeStep === step.id;
+                  return (
+                    <div key={step.id} className="relative flex items-start gap-4">
+                      <div
+                        className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border font-mono text-xs font-bold transition ${
+                          isActive
+                            ? "border-mint bg-mint text-base"
+                            : "border-mint/40 bg-base text-mint"
+                        }`}
+                      >
+                        {step.id}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        {renderStepButton(step, isActive)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="relative hidden sm:block">
               {/* Vertical spine */}
               <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-mint/20" />
 
@@ -193,31 +243,7 @@ export function ConsensusAction() {
                       {/* Left card */}
                       <div className="flex-1 pr-6">
                         {isLeft && (
-                          <motion.button
-                            type="button"
-                            onClick={() =>
-                              setActiveStep(isActive ? null : step.id)
-                            }
-                            className={`w-full rounded-xl border p-4 text-left transition ${
-                              isActive
-                                ? "border-mint/40 bg-mint/[0.08]"
-                                : "border-white/[0.08] bg-white/[0.03] hover:border-mint/25 hover:bg-white/[0.06]"
-                            }`}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <p className="font-mono text-[0.55rem] uppercase tracking-widest text-mint/60">
-                              {step.month}
-                            </p>
-                            <p className="mt-1 text-sm font-medium text-cream">
-                              {step.title}
-                            </p>
-                            {step.href && (
-                              <p className="mt-1 font-mono text-[0.5rem] text-mint/50">
-                                ↗ {step.href.replace("https://", "")}
-                              </p>
-                            )}
-                          </motion.button>
+                          renderStepButton(step, isActive)
                         )}
                       </div>
 
@@ -235,31 +261,7 @@ export function ConsensusAction() {
                       {/* Right card */}
                       <div className="flex-1 pl-6">
                         {!isLeft && (
-                          <motion.button
-                            type="button"
-                            onClick={() =>
-                              setActiveStep(isActive ? null : step.id)
-                            }
-                            className={`w-full rounded-xl border p-4 text-left transition ${
-                              isActive
-                                ? "border-mint/40 bg-mint/[0.08]"
-                                : "border-white/[0.08] bg-white/[0.03] hover:border-mint/25 hover:bg-white/[0.06]"
-                            }`}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <p className="font-mono text-[0.55rem] uppercase tracking-widest text-mint/60">
-                              {step.month}
-                            </p>
-                            <p className="mt-1 text-sm font-medium text-cream">
-                              {step.title}
-                            </p>
-                            {step.href && (
-                              <p className="mt-1 font-mono text-[0.5rem] text-mint/50">
-                                ↗ {step.href.replace("https://", "")}
-                              </p>
-                            )}
-                          </motion.button>
+                          renderStepButton(step, isActive)
                         )}
                       </div>
                     </div>
