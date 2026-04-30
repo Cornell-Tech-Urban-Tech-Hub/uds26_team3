@@ -421,8 +421,8 @@ export function PortfolioContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="border-b border-mint/20 bg-gradient-to-r from-black/50 via-mint/[0.08] to-black/50 px-4 py-3 text-center font-mono text-xs text-mint">
-                Live GAMA demo (Google Drive)
+              <div className="border-b border-mint/20 bg-gradient-to-r from-black/50 via-mint/[0.08] to-black/50 px-4 py-3 text-center text-sm font-semibold text-mint">
+                Live demo
               </div>
               <iframe
                 title="GAMA live demo"
