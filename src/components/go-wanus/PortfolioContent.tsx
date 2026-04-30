@@ -17,6 +17,7 @@ import { ConsensusAction } from "./ConsensusAction";
 import { InsightsSwitcher } from "./InsightsSwitcher";
 import { ScenarioMapPanel } from "./ScenarioMapPanel";
 import { SpeciesAccordion } from "./SpeciesAccordion";
+import { withBasePath } from "@/lib/withBasePath";
 
 // Load slider components client-only to avoid SSR/hydration style mismatch
 const BondStreetCompare = dynamic(
@@ -43,6 +44,70 @@ const fadeInUp = {
 
 const cardGlass =
   "rounded-2xl border border-white/[0.08] bg-white/[0.035] p-6 shadow-[0_12px_48px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-shadow hover:border-mint/15 hover:shadow-[0_16px_56px_rgba(0,0,0,0.45)]";
+
+const references = {
+  organizations: [
+    {
+      label: "Gowanus Canal Conservancy (GCC)",
+      href: "https://gowanuscanalconservancy.org/",
+      note: "Stakeholder reference used in the approval timeline.",
+    },
+    {
+      label: "Gowanus Improvement District (BID)",
+      href: "https://gowanusimprovementdistrict.org/get-involved",
+      note: "BID participation and engagement reference.",
+    },
+    {
+      label: "NYC Department of Transportation (DOT)",
+      href: "https://www.nyc.gov/html/dot/html/home/home.shtml",
+      note: "Pilot permitting and streetscape policy context.",
+    },
+  ],
+  platforms: [
+    {
+      label: "OpenStreetMap",
+      href: "https://www.openstreetmap.org/",
+      note: "Basemap tiles and OSM embed are used in map modules.",
+    },
+    {
+      label: "Google Drive",
+      href: "https://drive.google.com/",
+      note: "Hosted embeds for GAMA demo and media playback.",
+    },
+    {
+      label: "Apache ECharts",
+      href: "https://echarts.apache.org/",
+      note: "Line-race chart runtime for pollutant trajectories.",
+    },
+    {
+      label: "GAMA Platform",
+      href: "https://gama-platform.org/",
+      note: "Agent-based simulation framework referenced in methodology.",
+    },
+  ],
+  data: [
+    {
+      label: "BID boundary and geometry",
+      href: withBasePath("/data_from_gama/BID_vector.geojson"),
+      note: "Local dataset from public/data_from_gama.",
+    },
+    {
+      label: "Canal geometry",
+      href: withBasePath("/data_from_gama/canel.geojson"),
+      note: "Local dataset from public/data_from_gama.",
+    },
+    {
+      label: "Tree inventory baseline",
+      href: withBasePath("/data_from_gama/gowanus_bid_trees.geojson"),
+      note: "Local dataset for current tree distribution.",
+    },
+    {
+      label: "Scenario trees (full/new) and street change",
+      href: withBasePath("/data_from_gama/bid_trees_full.geojson"),
+      note: "Scenario datasets paired with bid_trees_new.geojson and street_change.geojson.",
+    },
+  ],
+};
 
 type FlowStep = { n: string; title: string; detail: string; loop: boolean };
 
@@ -543,6 +608,58 @@ export function PortfolioContent() {
 
         {/* Consensus & Action */}
         <ConsensusAction />
+
+        <section
+          id="reference"
+          className="scroll-mt-24 border-t border-white/[0.06] px-4 py-20 sm:px-6"
+        >
+          <div className="mx-auto max-w-6xl">
+            <SectionPillar
+              step="07"
+              eyebrow="Sources & citation"
+              title="Reference"
+              subtitle="Websites, tools, and local datasets used across this portfolio."
+            />
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              {[
+                { title: "Organizations", items: references.organizations },
+                { title: "Platforms & Tools", items: references.platforms },
+                { title: "Datasets", items: references.data },
+              ].map((group) => (
+                <motion.div
+                  key={group.title}
+                  className={cardGlass}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <h3 className="font-[family-name:var(--font-display)] text-xl text-arch">
+                    {group.title}
+                  </h3>
+                  <div className="mt-4 space-y-4">
+                    {group.items.map((item) => (
+                      <div key={item.label} className="border-t border-white/[0.07] pt-3">
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-mint/90 underline decoration-mint/30 underline-offset-2 hover:text-cream"
+                        >
+                          {item.label}
+                        </a>
+                        <p className="mt-1 text-xs leading-relaxed text-arch/65">
+                          {item.note}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <footer className="border-t border-white/[0.06] px-4 py-10 sm:px-6">
           <div className="mx-auto max-w-6xl flex flex-col items-center justify-between gap-4 text-center text-sm text-arch/50 sm:flex-row sm:text-left">

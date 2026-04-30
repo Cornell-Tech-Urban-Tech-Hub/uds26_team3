@@ -35,6 +35,11 @@ const links = [
     label: "Consensus & Action",
     sub: "GCC · BID · DOT · delivery",
   },
+  {
+    href: "#reference",
+    label: "Reference",
+    sub: "Websites · tools · datasets",
+  },
 ];
 
 export function NavExploreDropdown() {

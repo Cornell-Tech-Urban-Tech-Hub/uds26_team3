@@ -12,6 +12,7 @@ const links = [
   { href: "#behavioral", label: "Behavioral" },
   { href: "#financials", label: "Outcome" },
   { href: "#stakeholders", label: "Consensus" },
+  { href: "#reference", label: "Reference" },
 ];
 
 export function GlassNav() {
