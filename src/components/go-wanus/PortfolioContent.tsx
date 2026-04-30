@@ -135,7 +135,7 @@ const references = {
     {
       label:
         "Rosenzweig, C., Solecki, W., & Slosberg, R. (2006). Mitigating New York City's heat island with urban forestry, living roofs, and light surfaces (Final Report 06-06). New York State Energy Research and Development Authority.",
-      href: "https://www.nyserda.ny.gov/-/media/Files/Publications/Research/Environmental/EMEP/NYC-Heat-Island-Mitigation.pdf",
+      href: "https://www.researchgate.net/publication/242139673_Mitigating_New_York_City's_heat_island_with_urban_forestry_living_roofs_and_light_surfaces",
       note: "Report PDF",
     },
     {
