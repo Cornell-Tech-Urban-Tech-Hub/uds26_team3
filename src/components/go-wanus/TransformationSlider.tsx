@@ -395,6 +395,11 @@ export function TransformationSlider() {
         <p className="mt-3 text-center font-mono text-[0.6rem] uppercase tracking-[0.25em] text-cream/35">
           Drag the handle · BID boundary uses `data_from_gama/BID_vector` · OSM basemap
         </p>
+        <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-arch/75">
+          There are 876 living trees in the Gowanus BID, but they are unevenly
+          distributed. Most are young and non-native, providing limited canopy
+          cover for residents.
+        </p>
       </div>
     </motion.div>
   );

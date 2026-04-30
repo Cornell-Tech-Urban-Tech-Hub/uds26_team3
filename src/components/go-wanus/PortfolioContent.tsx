@@ -28,12 +28,6 @@ const TransformationSlider = dynamic(
   { ssr: false }
 );
 
-const SCENARIO_NOTES: Record<"S0" | "S1" | "S2", string> = {
-  S0: "Keep current conditions and maintenance regimes.",
-  S1: "+20% tree density in eco-sensitive zones, coordinated with swales where feasible.",
-  S2: "Widen narrow sidewalks in conflict corridors to allow root growth and better pit volume.",
-};
-
 const fadeInUp = {
   initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
@@ -82,6 +76,11 @@ const references = {
       label: "Apache ECharts",
       href: "https://echarts.apache.org/",
       note: "Line-race chart runtime for pollutant trajectories.",
+    },
+    {
+      label: "QGIS",
+      href: "https://qgis.org/",
+      note: "Data processing and spatial analysis tool for preparing GIS layers.",
     },
     {
       label: "GAMA Platform",
@@ -306,8 +305,6 @@ export function PortfolioContent() {
               environment is essential to attract new residents. However,
               Gowanus&apos;s industrial legacy, fragile ecological system, and budget
               limitations all make its green transformation challenging.
-              <br /><br />
-              Click each card from the left panel to view the problem breakdown.
             </motion.p>
             <InsightsSwitcher />
           </div>
@@ -351,6 +348,44 @@ export function PortfolioContent() {
               </div>
               <div className="mt-6 mx-auto max-w-5xl">
                 <ScenarioMapPanel scenario={scenario} />
+              </div>
+              <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
+                {[
+                  {
+                    id: "S0",
+                    title: "Baseline",
+                    body: "Current street conditions remain unchanged, including existing tree distribution, sidewalk widths, and stormwater flood risk. This reference scenario helps measure the benefits of future greening interventions.",
+                  },
+                  {
+                    id: "S1",
+                    title: "More Trees",
+                    body: "Street trees increase by roughly 20%, with new planting prioritized where tree density is low and stormwater flood risk is high. The goal is stronger canopy coverage, shade, cooling, and water absorption.",
+                  },
+                  {
+                    id: "S2",
+                    title: "Trees & Sidewalks",
+                    body: "This scenario adds trees and widens constrained sidewalks to create more room for tree beds and root systems, supporting healthier long-term growth while improving pedestrian comfort and accessibility.",
+                  },
+                ].map((item) => (
+                  <motion.article
+                    key={item.id}
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-mint/75">
+                      {item.id}
+                    </p>
+                    <h4 className="mt-2 font-[family-name:var(--font-display)] text-xl text-cream">
+                      {item.title}
+                    </h4>
+                    <p className="mt-3 text-sm leading-relaxed text-arch/75">
+                      {item.body}
+                    </p>
+                  </motion.article>
+                ))}
               </div>
             </div>
 
@@ -724,7 +759,7 @@ export function PortfolioContent() {
 
         <footer className="border-t border-white/[0.06] px-4 py-10 sm:px-6">
           <div className="mx-auto max-w-6xl flex flex-col items-center justify-between gap-4 text-center text-sm text-arch/50 sm:flex-row sm:text-left">
-            <p>GO-Wanus Green — research portfolio</p>
+            <p>GO-Wanus Green: research portfolio</p>
             <p className="font-mono text-xs">Gowanus BID</p>
           </div>
         </footer>

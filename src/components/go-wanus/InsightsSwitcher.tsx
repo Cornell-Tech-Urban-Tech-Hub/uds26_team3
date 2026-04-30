@@ -108,7 +108,7 @@ function VisualPanel({ item }: { item: Insight }) {
           />
           <div className={`absolute inset-0 transition ${activeImg === i ? "bg-black/10" : "bg-transparent"}`} />
           <div className="absolute bottom-2 right-2 rounded-full border border-white/20 bg-black/50 px-2 py-0.5 font-mono text-[0.8rem] uppercase tracking-widest text-cream/60 backdrop-blur-sm">
-            {activeImg === i ? "click to hide" : "click for caption"}
+            {activeImg === i ? "click to hide" : "click for detail"}
           </div>
         </button>
       ))}
@@ -154,6 +154,9 @@ export function InsightsSwitcher() {
       </AnimatePresence>
 
       <div className="space-y-4">
+        <p className="rounded-2xl border border-white/[0.07] bg-white/[0.025] px-5 py-4 text-sm leading-relaxed text-arch/75">
+          Click each card to view the problem breakdown.
+        </p>
         {insights.map((item) => {
           const isActive = item.key === active;
           return (

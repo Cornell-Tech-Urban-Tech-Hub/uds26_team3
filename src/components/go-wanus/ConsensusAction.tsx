@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ImageIcon, ArrowRight } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import { SectionPillar } from "./SectionPillar";
 import { withBasePath } from "@/lib/withBasePath";
 
@@ -92,10 +92,6 @@ export function ConsensusAction() {
 
             {/* Panel — iframe for linked steps, photo for image steps */}
             <div className="relative flex min-h-[260px] flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02]">
-              <div className="pointer-events-none absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/45 px-2.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-wider text-white/90">
-                Preview
-                <ArrowRight className="h-5 w-5" />
-              </div>
               <AnimatePresence mode="wait">
                 {active?.href && !active.img ? (
                   <motion.div
