@@ -7,7 +7,7 @@ import { NavExploreDropdown } from "./NavExploreDropdown";
 
 const links = [
   { href: "#research", label: "Insights" },
-  { href: "#scenarios", label: "Transformation" },
+  { href: "#transformation", label: "Transformation" },
   { href: "#simulation", label: "Prediction" },
   { href: "#behavioral", label: "Behavioral" },
   { href: "#financials", label: "Outcome" },

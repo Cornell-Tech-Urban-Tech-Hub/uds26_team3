@@ -11,7 +11,7 @@ const links = [
     sub: "Motivation · context · canopy gap",
   },
   {
-    href: "#scenarios",
+    href: "#transformation",
     label: "Transformation",
     sub: "Intervention · planting · S0–S2",
   },

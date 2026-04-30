@@ -330,7 +330,10 @@ export function PortfolioContent() {
         </section>
 
         {/* Transformation — 02 + 02b bundled */}
-        <section className="border-b border-white/[0.06] px-4 py-20 sm:px-6">
+        <section
+          id="transformation"
+          className="scroll-mt-24 border-b border-white/[0.06] px-4 py-20 sm:px-6"
+        >
           <div className="mx-auto max-w-6xl">
             <SectionPillar
               step="02"
@@ -359,10 +362,7 @@ export function PortfolioContent() {
                 Planned tree locations are predefined to maximize ecological
                 benefits.
               </p>
-              <div className="mt-6 mx-auto max-w-5xl">
-                <ScenarioMapPanel scenario={scenario} />
-              </div>
-              <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
+              <div className="mx-auto mt-6 grid max-w-5xl gap-4 md:grid-cols-3">
                 {scenarioCards.map((item) => {
                   const active = scenario === item.id;
                   return (
@@ -407,6 +407,9 @@ export function PortfolioContent() {
                   );
                 })}
               </div>
+              <div className="mt-8 mx-auto max-w-5xl">
+                <ScenarioMapPanel scenario={scenario} />
+              </div>
             </div>
 
             {/* 02b · Species & Planting Strategies */}
@@ -417,7 +420,6 @@ export function PortfolioContent() {
               <h3 className="mt-2 font-[family-name:var(--font-display)] text-2xl text-arch md:text-3xl">
                 Species and Planting Strategies
               </h3>
-              <SpeciesAccordion />
               <motion.div
                 className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl"
                 {...fadeInUp}
@@ -425,10 +427,10 @@ export function PortfolioContent() {
                 <p className="mb-5 font-mono text-[0.6rem] uppercase tracking-[0.28em] text-cream/50">Planting strategy</p>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {[
-                    { icon: "🌊", text: "Prioritize flood-prone corridors and low-canopy areas" },
-                    { icon: "📐", text: "Match species to sidewalk width & available soil volume" },
-                    { icon: "🪨", text: "Use tree beds & permeable paving to support root growth" },
-                    { icon: "⚠️", text: "Avoid overrepresented species (e.g., London Plane, Honey Locust, Ginkgo)" },
+                    { icon: "🌊", text: "Prioritize flood-prone, low-canopy streets to improve shade, stormwater capture, and comfort." },
+                    { icon: "📐", text: "Match species to sidewalk width, soil volume, and street exposure for healthier growth." },
+                    { icon: "🪨", text: "Use expanded tree beds and permeable paving to support roots and reduce runoff." },
+                    { icon: "⚠️", text: "Avoid overrepresented species such as London Plane, Honey Locust, and Ginkgo to improve biodiversity." },
                   ].map((p, i) => (
                     <motion.div
                       key={i}
@@ -444,6 +446,9 @@ export function PortfolioContent() {
                   ))}
                 </div>
               </motion.div>
+              <div className="mt-8">
+                <SpeciesAccordion />
+              </div>
             </div>
           </div>
         </section>

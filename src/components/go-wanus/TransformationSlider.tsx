@@ -327,8 +327,9 @@ export function TransformationSlider() {
             Current Tree Distribution Analysis
           </h3>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-arch/70">
-            Compare the current BID tree inventory as point distribution and
-            density heatmap layers.
+            There are 876 living trees in the Gowanus BID, but they are unevenly
+            distributed. Most are young and non-native, providing limited canopy
+            cover for residents.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -394,11 +395,6 @@ export function TransformationSlider() {
         </div>
         <p className="mt-3 text-center font-mono text-[0.6rem] uppercase tracking-[0.25em] text-cream/35">
           Drag the handle · BID boundary uses `data_from_gama/BID_vector` · OSM basemap
-        </p>
-        <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-arch/75">
-          There are 876 living trees in the Gowanus BID, but they are unevenly
-          distributed. Most are young and non-native, providing limited canopy
-          cover for residents.
         </p>
       </div>
     </motion.div>

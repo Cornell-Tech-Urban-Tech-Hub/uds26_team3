@@ -10,7 +10,7 @@ const pillars = [
     n: "01",
   },
   {
-    href: "#scenarios",
+    href: "#transformation",
     label: "Transformation",
     sub: "Intervention & planting",
     n: "02",
