@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { dissolve, flatten } from "@turf/turf";
+import { withBasePath } from "@/lib/withBasePath";
 
 export type Geometry = GeoJSON.Geometry;
 export type Feature = GeoJSON.Feature<Geometry>;
@@ -310,8 +311,8 @@ export function useMapBase(): MapBaseState {
     async function load() {
       try {
         const [bidRes, canalRes] = await Promise.all([
-          fetch("/data_from_gama/BID_vector.geojson"),
-          fetch("/data_from_gama/canel.geojson"),
+          fetch(withBasePath("/data_from_gama/BID_vector.geojson")),
+          fetch(withBasePath("/data_from_gama/canel.geojson")),
         ]);
         if (!bidRes.ok || !canalRes.ok) {
           throw new Error("Failed to load BID or canal data file");

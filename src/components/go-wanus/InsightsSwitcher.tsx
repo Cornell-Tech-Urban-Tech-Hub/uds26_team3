@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ImageIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { withBasePath } from "@/lib/withBasePath";
 
 type InsightKey = "gap" | "forest" | "friction" | "deficit";
 
@@ -24,11 +25,11 @@ const insights: Insight[] = [
     desc: "Gowanus is transforming to mixed-use, but private development does not automatically generate public shade or walkable comfort.",
     images: [
       {
-        src: "/insight-01-construction.png",
+        src: withBasePath("/insight-01-construction.png"),
         caption: "Many developments are taking place in Gowanus. However, most of these projects are driven by revenue generation rather than community welfare and resilience.",
       },
       {
-        src: "/insight-01-street.png",
+        src: withBasePath("/insight-01-street.png"),
         caption: "The left side of the street, where a private apartment is located, features well-maintained greenery, while the public streetscape on the right remains largely bare. This contrast demonstrates that community greening requires a systematic plan.",
       },
     ],
@@ -40,7 +41,7 @@ const insights: Insight[] = [
     desc: "Street trees are largely young, low-diversity, and frequently non-native, which limits long-term canopy resilience.",
     images: [
       {
-        src: "/insight-02-tree.png",
+        src: withBasePath("/insight-02-tree.png"),
         caption: "This is a typical young street tree in Gowanus: small, fragile, and enclosed within a tree guard. While the guard seems to protect the tree, it reflects a workaround for poor sidewalk tree bed planning rather than a true solution.",
       },
     ],
@@ -52,7 +53,7 @@ const insights: Insight[] = [
     desc: "Legacy tree bed sizing and hardscape geometry create root conflict, pavement damage, and pedestrian discomfort.",
     images: [
       {
-        src: "/insight-03-sidewalk.png",
+        src: withBasePath("/insight-03-sidewalk.png"),
         caption: "Small tree pits and narrow sidewalks force roots to push against pavement, causing damage and making walking less comfortable. The mismatch between historic planning and current greening goals left many trees with severely limited space to grow.",
       },
     ],
@@ -64,7 +65,7 @@ const insights: Insight[] = [
     desc: "Volunteer planting helps, but without municipal coordination and maintenance structure, impacts are fragmented.",
     images: [
       {
-        src: "/insight-04-community.png",
+        src: withBasePath("/insight-04-community.png"),
         caption: "The Tree Network, led by the Gowanus Canal Conservancy, regularly recruits volunteers for tree planting, but limited funding keeps the overall impact modest.",
       },
     ],

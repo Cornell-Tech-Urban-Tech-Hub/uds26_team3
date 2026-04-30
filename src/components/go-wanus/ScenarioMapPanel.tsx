@@ -15,6 +15,7 @@ import {
   toPercent,
   useMapBase,
 } from "@/lib/mapBase";
+import { withBasePath } from "@/lib/withBasePath";
 import { SoftWhiteMapBase } from "./SoftWhiteMapBase";
 
 type S = "S0" | "S1" | "S2";
@@ -42,9 +43,9 @@ function useScenarioLayers(): ScenarioLayers {
     async function load() {
       try {
         const [fullRes, newRes, streetRes] = await Promise.all([
-          fetch("/uds26_team3/data_from_gama/bid_trees_full.geojson"),
-          fetch("/uds26_team3/data_from_gama/bid_trees_new.geojson"),
-          fetch("/uds26_team3/data_from_gama/street_change.geojson"),
+          fetch(withBasePath("/data_from_gama/bid_trees_full.geojson")),
+          fetch(withBasePath("/data_from_gama/bid_trees_new.geojson")),
+          fetch(withBasePath("/data_from_gama/street_change.geojson")),
         ]);
         if (!fullRes.ok || !newRes.ok || !streetRes.ok) {
           throw new Error("Failed to load scenario layers");

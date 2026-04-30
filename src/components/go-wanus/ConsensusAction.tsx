@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ImageIcon } from "lucide-react";
 import { SectionPillar } from "./SectionPillar";
+import { withBasePath } from "@/lib/withBasePath";
 
 const steps = [
   {
@@ -21,14 +22,14 @@ const steps = [
     month: "Month 3",
     title: "BID Steering Consensus",
     side: "left",
-    img: "/bid-site-2.png",
+    img: withBasePath("/bid-site-2.png"),
     href: "https://gowanusimprovementdistrict.org/get-involved",
     imgContain: false,
     invertImg: false,
   },
   { id: 3, month: "Month 4", title: "DOT Pilot Permitting", side: "right", img: null, href: "https://www.nyc.gov/html/dot/html/home/home.shtml", imgContain: false, invertImg: false },
-  { id: 4, month: "Month 7", title: "Tree Installation", side: "left", img: "/step-04-street.png", href: null, imgContain: false, invertImg: false },
-  { id: 5, month: "Month 9", title: "Data Collection & Feedback", side: "right", img: "/step-05-street.png", href: null, imgContain: false, invertImg: false },
+  { id: 4, month: "Month 7", title: "Tree Installation", side: "left", img: withBasePath("/step-04-street.png"), href: null, imgContain: false, invertImg: false },
+  { id: 5, month: "Month 9", title: "Data Collection & Feedback", side: "right", img: withBasePath("/step-05-street.png"), href: null, imgContain: false, invertImg: false },
 ];
 
 export function ConsensusAction() {

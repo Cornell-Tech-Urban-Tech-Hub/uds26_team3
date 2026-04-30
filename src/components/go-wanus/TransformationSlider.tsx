@@ -17,6 +17,7 @@ import {
   toPercent,
   useMapBase,
 } from "@/lib/mapBase";
+import { withBasePath } from "@/lib/withBasePath";
 import { SoftWhiteMapBase } from "./SoftWhiteMapBase";
 
 type TreesState = {
@@ -37,7 +38,7 @@ function useTreeInventory(): TreesState {
 
     async function load() {
       try {
-        const res = await fetch("/data_from_gama/gowanus_bid_trees.geojson");
+        const res = await fetch(withBasePath("/data_from_gama/gowanus_bid_trees.geojson"));
         if (!res.ok) throw new Error("Failed to load tree data");
         const data = normalizeToEpsg4326(
           (await res.json()) as FeatureCollection

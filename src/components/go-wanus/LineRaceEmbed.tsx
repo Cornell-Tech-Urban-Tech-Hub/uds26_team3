@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { LineChart, ExternalLink } from "lucide-react";
+import { withBasePath } from "@/lib/withBasePath";
 
 export function LineRaceEmbed() {
   return (
@@ -31,7 +32,7 @@ export function LineRaceEmbed() {
           </p>
         </div>
         <a
-          href="/line-race.html"
+          href={withBasePath("/line-race.html")}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 self-start rounded-xl border border-white/[0.1] bg-white/[0.05] px-3 py-2 text-sm text-cream/90 transition hover:border-mint/35 hover:bg-white/[0.08]"
@@ -43,7 +44,7 @@ export function LineRaceEmbed() {
       <div className="mt-6 overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0d1210] shadow-[0_16px_48px_rgba(0,0,0,0.4)]">
         <iframe
           title="S0 vs S2 air quality line race (ECharts)"
-          src="/line-race.html"
+          src={withBasePath("/line-race.html")}
           className="h-[min(72vh,640px)] w-full border-0"
           loading="lazy"
         />

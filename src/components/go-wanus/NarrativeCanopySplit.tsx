@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TreeDeciduous, XCircle, TrendingUp, Car, Leaf } from "lucide-react";
+import { withBasePath } from "@/lib/withBasePath";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -43,7 +44,7 @@ export function NarrativeCanopySplit() {
             <div className="mt-8 space-y-5">
               <figure className="mx-auto w-full max-w-[26rem] overflow-hidden rounded-2xl border border-[#d4b896]/20 bg-black/25">
                 <img
-                  src="/insights-gowanus-map-2.png"
+                  src={withBasePath("/insights-gowanus-map-2.png")}
                   alt="Gowanus context map showing surrounding neighborhoods and block-level canopy pattern"
                   className="aspect-[4/3] h-auto w-full object-cover object-center"
                   loading="lazy"

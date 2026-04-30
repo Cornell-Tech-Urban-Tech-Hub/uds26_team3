@@ -11,9 +11,10 @@ import {
 import { MapPin, Sparkles } from "lucide-react";
 import { AfterMedia } from "./AfterMedia";
 import { DRIVE, driveFileIdFromUserInput, drivePreviewUrl } from "@/lib/googleDrive";
+import { withBasePath } from "@/lib/withBasePath";
 
-const BEFORE = "/bond-245-before.png";
-const AFTER_IMG = "/bond-245-after.png";
+const BEFORE = withBasePath("/bond-245-before.png");
+const AFTER_IMG = withBasePath("/bond-245-after.png");
 
 type Props = {
   afterVideoSrc?: string | null;
