@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
-import { ChevronDown, TreeDeciduous, Building2 } from "lucide-react";
+import { TreeDeciduous, Building2 } from "lucide-react";
 import { GlassNav } from "./GlassNav";
 import { LineRaceEmbed } from "./LineRaceEmbed";
 import { HeroAtmosphere } from "./HeroAtmosphere";
@@ -248,7 +248,6 @@ function BehaviorFlowCard({
 
 export function PortfolioContent() {
   const [scenario, setScenario] = useState<ScenarioId>("S2");
-  const [strategyOpen, setStrategyOpen] = useState(false);
 
   return (
     <>
@@ -277,7 +276,7 @@ export function PortfolioContent() {
                 the Gowanus BID.
               </p>
               <p className="mt-10 text-base text-cream sm:text-lg">
-                <span className="font-mono text-mint/80">Team</span> — Liu,
+                <span className="font-mono text-mint/80">Team 3:</span> Liu,
                 Wang, Zhang, Yin, Yao
               </p>
             </motion.div>
@@ -435,60 +434,30 @@ export function PortfolioContent() {
               </h3>
               <SpeciesAccordion />
               <motion.div
-                className="mt-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-[linear-gradient(160deg,rgba(18,18,22,0.92),rgba(7,10,9,0.97))] backdrop-blur-xl"
+                className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl"
                 {...fadeInUp}
               >
-                <button
-                  type="button"
-                  onClick={() => setStrategyOpen((open) => !open)}
-                  className="relative flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                  aria-expanded={strategyOpen}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-cream/70" />
-                    <span className="font-mono text-xs uppercase tracking-[0.28em] text-cream/70">
-                      Planting strategy
-                    </span>
-                  </div>
-                  <motion.span
-                    animate={{ rotate: strategyOpen ? 180 : 0 }}
-                    transition={{ duration: 0.22 }}
-                  >
-                    <ChevronDown className="h-4 w-4 text-cream/70" />
-                  </motion.span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {strategyOpen && (
+                <p className="mb-5 font-mono text-[0.6rem] uppercase tracking-[0.28em] text-cream/50">Planting strategy</p>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {[
+                    { icon: "🌊", text: "Prioritize flood-prone, low-canopy streets to improve shade, stormwater capture, and comfort." },
+                    { icon: "📐", text: "Match species to sidewalk width, soil volume, and street exposure for healthier growth." },
+                    { icon: "🪨", text: "Use expanded tree beds and permeable paving to support roots and reduce runoff." },
+                    { icon: "⚠️", text: "Avoid overrepresented species such as London Plane, Honey Locust, and Ginkgo to improve biodiversity." },
+                  ].map((p, i) => (
                     <motion.div
-                      key="strategy-body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
+                      key={i}
+                      className="flex gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4"
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.08 * i, duration: 0.4 }}
                     >
-                      <div className="grid gap-4 border-t border-white/[0.06] px-6 pb-6 pt-4 sm:grid-cols-2 lg:grid-cols-4">
-                        {[
-                          { icon: "🌊", text: "Prioritize flood-prone, low-canopy streets to improve shade, stormwater capture, and comfort." },
-                          { icon: "📐", text: "Match species to sidewalk width, soil volume, and street exposure for healthier growth." },
-                          { icon: "🪨", text: "Use expanded tree beds and permeable paving to support roots and reduce runoff." },
-                          { icon: "⚠️", text: "Avoid overrepresented species such as London Plane, Honey Locust, and Ginkgo to improve biodiversity." },
-                        ].map((p, i) => (
-                          <motion.div
-                            key={i}
-                            className="flex gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4"
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.08 * i, duration: 0.4 }}
-                          >
-                            <span className="text-xl">{p.icon}</span>
-                            <p className="text-sm leading-relaxed text-cream/85">{p.text}</p>
-                          </motion.div>
-                        ))}
-                      </div>
+                      <span className="text-xl">{p.icon}</span>
+                      <p className="text-sm leading-relaxed text-cream/85">{p.text}</p>
                     </motion.div>
-                  )}
-                </AnimatePresence>
+                  ))}
+                </div>
               </motion.div>
             </div>
           </div>
