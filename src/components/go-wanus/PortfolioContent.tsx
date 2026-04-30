@@ -107,6 +107,44 @@ const references = {
       note: "Scenario datasets paired with bid_trees_new.geojson and street_change.geojson.",
     },
   ],
+  papers: [
+    {
+      label:
+        "Nowak, D. J., Crane, D. E., & Stevens, J. C. (2006). Air pollution removal by urban trees and shrubs in the United States. Urban Forestry & Urban Greening, 4(3-4), 115-123.",
+      href: "https://doi.org/10.1016/j.ufug.2006.01.007",
+      note: "DOI",
+    },
+    {
+      label:
+        "Shetty, N. H. (2023). Estimating stormwater infiltration and canopy interception for street tree pits in Manhattan, New York. Forests, 14(2), 216.",
+      href: "https://doi.org/10.3390/f14020216",
+      note: "DOI",
+    },
+    {
+      label:
+        "Westfall, J. A., Nowak, D. J., Henning, J. G., Lister, T. W., Edgar, C. B., Majewsky, M. A., & Sonti, N. F. (2020). Crown width models for woody plant species growing in urban areas of the U.S. Urban Ecosystems, 23(4), 905-917.",
+      href: "https://doi.org/10.1007/s11252-020-00988-2",
+      note: "DOI",
+    },
+    {
+      label:
+        "Mailloux, B. J., McGillis, C., Maenza-Gmelch, T., Culligan, P. J., He, M. Z., Kaspi, G., Miley, M., Komita-Moussa, E., Sanchez, T. R., Steiger, E., Zhao, H., & Cook, E. M. (2024). Large-scale determinants of street tree growth rates across an urban environment. PLoS ONE, 19(7), e0304447.",
+      href: "https://doi.org/10.1371/journal.pone.0304447",
+      note: "DOI",
+    },
+    {
+      label:
+        "Rosenzweig, C., Solecki, W., & Slosberg, R. (2006). Mitigating New York City's heat island with urban forestry, living roofs, and light surfaces (Final Report 06-06). New York State Energy Research and Development Authority.",
+      href: "https://www.nyserda.ny.gov/-/media/Files/Publications/Research/Environmental/EMEP/NYC-Heat-Island-Mitigation.pdf",
+      note: "Report PDF",
+    },
+    {
+      label:
+        "Nowak, D. J. (1996). Estimating leaf area and leaf biomass of open-grown deciduous urban trees. Forest Science, 42(4), 504-507.",
+      href: "https://doi.org/10.1093/forestscience/42.4.504",
+      note: "DOI",
+    },
+  ],
 };
 
 type FlowStep = { n: string; title: string; detail: string; loop: boolean };
@@ -658,6 +696,35 @@ export function PortfolioContent() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.035] p-6 shadow-[0_12px_48px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+            >
+              <h3 className="font-[family-name:var(--font-display)] text-xl text-arch">
+                Academic Papers
+              </h3>
+              <div className="mt-4 space-y-4">
+                {references.papers.map((paper) => (
+                  <div key={paper.href} className="border-t border-white/[0.07] pt-3">
+                    <p className="text-sm leading-relaxed text-cream/90">
+                      {paper.label}
+                    </p>
+                    <a
+                      href={paper.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-block text-xs text-mint/90 underline decoration-mint/30 underline-offset-2 hover:text-cream"
+                    >
+                      {paper.note}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </section>
 
