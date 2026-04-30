@@ -248,7 +248,7 @@ export function normalizeToEpsg4326(
           ) as GeoJSON.Position[] | GeoJSON.Position[][] | GeoJSON.Position[][][],
         },
       };
-    }),
+    }) as GeoJSON.Feature<GeoJSON.Geometry, GeoJSON.GeoJsonProperties>[],
   };
 }
 
