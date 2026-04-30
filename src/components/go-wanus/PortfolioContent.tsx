@@ -88,22 +88,22 @@ const references = {
   data: [
     {
       label: "BID boundary and geometry",
-      href: withBasePath("/data_from_gama/BID_vector.geojson"),
+      href: "https://raw.githubusercontent.com/Cornell-Tech-Urban-Tech-Hub/uds26_team3/main/public/data_from_gama/BID_vector.geojson",
       note: "Local dataset from public/data_from_gama.",
     },
     {
       label: "Canal geometry",
-      href: withBasePath("/data_from_gama/canel.geojson"),
+      href: "https://raw.githubusercontent.com/Cornell-Tech-Urban-Tech-Hub/uds26_team3/main/public/data_from_gama/canel.geojson",
       note: "Local dataset from public/data_from_gama.",
     },
     {
       label: "Tree inventory baseline",
-      href: withBasePath("/data_from_gama/gowanus_bid_trees.geojson"),
+      href: "https://raw.githubusercontent.com/Cornell-Tech-Urban-Tech-Hub/uds26_team3/main/public/data_from_gama/gowanus_bid_trees.geojson",
       note: "Local dataset for current tree distribution.",
     },
     {
       label: "Scenario trees (full/new) and street change",
-      href: withBasePath("/data_from_gama/bid_trees_full.geojson"),
+      href: "https://raw.githubusercontent.com/Cornell-Tech-Urban-Tech-Hub/uds26_team3/main/public/data_from_gama/bid_trees_full.geojson",
       note: "Scenario datasets paired with bid_trees_new.geojson and street_change.geojson.",
     },
   ],
