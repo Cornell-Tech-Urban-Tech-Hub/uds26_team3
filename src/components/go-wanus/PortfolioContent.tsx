@@ -61,17 +61,22 @@ const references = {
       href: "https://www.nyc.gov/html/dot/html/home/home.shtml",
       note: "Pilot permitting and streetscape policy context.",
     },
+    {
+      label: "New York City Department of Parks & Recreation",
+      href: "https://www.nycgovparks.org/",
+      note: "Urban forestry coordination and tree stewardship context.",
+    },
+    {
+      label: "NYC Department of Environmental Protection (DEP)",
+      href: "https://www.nyc.gov/site/dep/index.page",
+      note: "Stormwater and environmental infrastructure context.",
+    },
   ],
   platforms: [
     {
       label: "OpenStreetMap",
       href: "https://www.openstreetmap.org/",
       note: "Basemap tiles and OSM embed are used in map modules.",
-    },
-    {
-      label: "Google Drive",
-      href: "https://drive.google.com/",
-      note: "Hosted embeds for GAMA demo and media playback.",
     },
     {
       label: "Apache ECharts",

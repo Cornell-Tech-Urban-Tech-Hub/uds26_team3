@@ -11,7 +11,7 @@ import {
 import { MapPin, Sparkles } from "lucide-react";
 import { withBasePath } from "@/lib/withBasePath";
 
-const BEFORE = withBasePath("/bond-245-before.png");
+const BEFORE = withBasePath("/sidewalk_before.png");
 const AFTER_IMG = withBasePath("/sidewalk.png");
 
 export function BondStreetCompare() {
