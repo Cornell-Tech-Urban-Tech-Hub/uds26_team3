@@ -238,6 +238,7 @@ export function normalizeToEpsg4326(
     ...raw,
     features: raw.features.map((feature) => {
       if (!feature.geometry) return feature;
+      if (feature.geometry.type === "GeometryCollection") return feature;
       return {
         ...feature,
         geometry: {
