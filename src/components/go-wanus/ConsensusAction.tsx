@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ImageIcon } from "lucide-react";
+import { ImageIcon, ArrowRight } from "lucide-react";
 import { SectionPillar } from "./SectionPillar";
 import { withBasePath } from "@/lib/withBasePath";
 
@@ -91,7 +91,11 @@ export function ConsensusAction() {
             </div>
 
             {/* Panel — iframe for linked steps, photo for image steps */}
-            <div className="flex min-h-[260px] flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02]">
+            <div className="relative flex min-h-[260px] flex-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02]">
+              <div className="pointer-events-none absolute right-3 top-3 z-10 flex items-center gap-1 rounded-full border border-white/20 bg-black/45 px-2 py-1 font-mono text-[0.55rem] uppercase tracking-wider text-white/90">
+                Preview
+                <ArrowRight className="h-3.5 w-3.5" />
+              </div>
               <AnimatePresence mode="wait">
                 {active?.href && !active.img ? (
                   <motion.div
@@ -177,7 +181,7 @@ export function ConsensusAction() {
             <p className="mb-6 font-mono text-[0.6rem] uppercase tracking-[0.28em] text-cream/40">
               9-Month Approval Pipeline
             </p>
-            <p className="mb-5 text-xs text-cream/55">
+            <p className="mb-5 text-base font-semibold text-white">
               Click any timeline card to show its corresponding content in the
               preview panel on the left.
             </p>
