@@ -363,7 +363,7 @@ export function PortfolioContent() {
                 benefits.
               </p>
               <div className="mx-auto mt-6 grid max-w-6xl items-stretch gap-5 lg:grid-cols-[minmax(220px,0.34fr)_minmax(0,1fr)]">
-                <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+                <div className="grid gap-4 md:grid-cols-3 lg:flex lg:h-[520px] lg:flex-col">
                   {scenarioCards.map((item) => {
                     const active = scenario === item.id;
                     return (
@@ -372,10 +372,10 @@ export function PortfolioContent() {
                         type="button"
                         onClick={() => setScenario(item.id)}
                         aria-pressed={active}
-                        className={`relative flex h-full min-h-[168px] flex-col overflow-hidden rounded-2xl border p-5 text-left backdrop-blur-sm transition ${
+                        className={`relative flex flex-col overflow-hidden rounded-2xl border p-5 text-left backdrop-blur-sm transition ${
                           active
-                            ? "border-mint/45 bg-white/[0.08] shadow-[0_0_30px_rgba(136,201,161,0.16)]"
-                            : "border-white/[0.08] bg-white/[0.03] hover:border-mint/28 hover:bg-white/[0.055]"
+                            ? "min-h-[168px] border-mint/45 bg-white/[0.08] shadow-[0_0_30px_rgba(136,201,161,0.16)] lg:flex-1"
+                            : "min-h-[96px] border-white/[0.08] bg-white/[0.03] hover:border-mint/28 hover:bg-white/[0.055] lg:flex-none"
                         }`}
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -401,15 +401,25 @@ export function PortfolioContent() {
                         <h4 className="relative mt-2 font-[family-name:var(--font-display)] text-xl text-cream">
                           {item.title}
                         </h4>
-                        <p className="relative mt-3 text-sm leading-relaxed text-arch/75">
-                          {item.body}
-                        </p>
+                        {active && (
+                          <motion.p
+                            className="relative mt-3 text-sm leading-relaxed text-arch/75"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.22 }}
+                          >
+                            {item.body}
+                          </motion.p>
+                        )}
                       </motion.button>
                     );
                   })}
                 </div>
                 <div>
-                  <ScenarioMapPanel scenario={scenario} />
+                  <ScenarioMapPanel
+                    scenario={scenario}
+                    mapFrameClassName="lg:h-[520px] lg:aspect-auto"
+                  />
                 </div>
               </div>
             </div>

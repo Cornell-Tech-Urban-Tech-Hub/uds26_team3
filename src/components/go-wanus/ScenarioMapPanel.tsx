@@ -148,7 +148,13 @@ function buildStreetSegments(
   return segments;
 }
 
-export function ScenarioMapPanel({ scenario }: { scenario: S }) {
+export function ScenarioMapPanel({
+  scenario,
+  mapFrameClassName = "",
+}: {
+  scenario: S;
+  mapFrameClassName?: string;
+}) {
   const { base, loading: baseLoading, error: baseError } = useMapBase();
   const {
     treesFull,
@@ -215,8 +221,7 @@ export function ScenarioMapPanel({ scenario }: { scenario: S }) {
   return (
     <div>
       <div
-        className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white shadow-[0_16px_56px_rgba(0,0,0,0.45)]"
-        style={{ aspectRatio: "16/9" }}
+        className={`relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/[0.08] bg-white shadow-[0_16px_56px_rgba(0,0,0,0.45)] ${mapFrameClassName}`}
         onPointerDown={(event) => {
           const target = event.target as HTMLElement | null;
           if (target?.closest("[data-map-controls='true']")) return;
