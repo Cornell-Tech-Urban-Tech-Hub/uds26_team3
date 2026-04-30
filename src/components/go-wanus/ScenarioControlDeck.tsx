@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { RotateCcw, Sparkles } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 
 type S = "S0" | "S1" | "S2";
 

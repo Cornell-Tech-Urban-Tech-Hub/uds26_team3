@@ -8,7 +8,6 @@ import { GlassNav } from "./GlassNav";
 import { LineRaceEmbed } from "./LineRaceEmbed";
 import { HeroAtmosphere } from "./HeroAtmosphere";
 import { MethodologyAccordion } from "./MethodologyAccordion";
-import { ScenarioControlDeck } from "./ScenarioControlDeck";
 import { MindMapResearchSpine } from "./MindMapResearchSpine";
 import { NarrativeCanopySplit } from "./NarrativeCanopySplit";
 import { SectionPillar } from "./SectionPillar";
@@ -27,6 +26,26 @@ const TransformationSlider = dynamic(
   () => import("./TransformationSlider").then((m) => ({ default: m.TransformationSlider })),
   { ssr: false }
 );
+
+type ScenarioId = "S0" | "S1" | "S2";
+
+const scenarioCards: { id: ScenarioId; title: string; body: string }[] = [
+  {
+    id: "S0",
+    title: "Baseline",
+    body: "Current street conditions remain unchanged, including existing tree distribution, sidewalk widths, and stormwater flood risk. This reference scenario helps measure the benefits of future greening interventions.",
+  },
+  {
+    id: "S1",
+    title: "More Trees",
+    body: "Street trees increase by roughly 20%, with new planting prioritized where tree density is low and stormwater flood risk is high. The goal is stronger canopy coverage, shade, cooling, and water absorption.",
+  },
+  {
+    id: "S2",
+    title: "Trees & Sidewalks",
+    body: "This scenario adds trees and widens constrained sidewalks to create more room for tree beds and root systems, supporting healthier long-term growth while improving pedestrian comfort and accessibility.",
+  },
+];
 
 const fadeInUp = {
   initial: { opacity: 0, y: 28 },
@@ -228,7 +247,7 @@ function BehaviorFlowCard({
 }
 
 export function PortfolioContent() {
-  const [scenario, setScenario] = useState<"S0" | "S1" | "S2">("S2");
+  const [scenario, setScenario] = useState<ScenarioId>("S2");
 
   return (
     <>
@@ -340,52 +359,53 @@ export function PortfolioContent() {
                 Planned tree locations are predefined to maximize ecological
                 benefits.
               </p>
-              <div className="mt-6">
-                <ScenarioControlDeck
-                  scenario={scenario}
-                  onScenario={setScenario}
-                />
-              </div>
               <div className="mt-6 mx-auto max-w-5xl">
                 <ScenarioMapPanel scenario={scenario} />
               </div>
               <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">
-                {[
-                  {
-                    id: "S0",
-                    title: "Baseline",
-                    body: "Current street conditions remain unchanged, including existing tree distribution, sidewalk widths, and stormwater flood risk. This reference scenario helps measure the benefits of future greening interventions.",
-                  },
-                  {
-                    id: "S1",
-                    title: "More Trees",
-                    body: "Street trees increase by roughly 20%, with new planting prioritized where tree density is low and stormwater flood risk is high. The goal is stronger canopy coverage, shade, cooling, and water absorption.",
-                  },
-                  {
-                    id: "S2",
-                    title: "Trees & Sidewalks",
-                    body: "This scenario adds trees and widens constrained sidewalks to create more room for tree beds and root systems, supporting healthier long-term growth while improving pedestrian comfort and accessibility.",
-                  },
-                ].map((item) => (
-                  <motion.article
-                    key={item.id}
-                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm"
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-mint/75">
-                      {item.id}
-                    </p>
-                    <h4 className="mt-2 font-[family-name:var(--font-display)] text-xl text-cream">
-                      {item.title}
-                    </h4>
-                    <p className="mt-3 text-sm leading-relaxed text-arch/75">
-                      {item.body}
-                    </p>
-                  </motion.article>
-                ))}
+                {scenarioCards.map((item) => {
+                  const active = scenario === item.id;
+                  return (
+                    <motion.button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setScenario(item.id)}
+                      aria-pressed={active}
+                      className={`relative overflow-hidden rounded-2xl border p-5 text-left backdrop-blur-sm transition ${
+                        active
+                          ? "border-mint/45 bg-white/[0.08] shadow-[0_0_30px_rgba(136,201,161,0.16)]"
+                          : "border-white/[0.08] bg-white/[0.03] hover:border-mint/28 hover:bg-white/[0.055]"
+                      }`}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.99 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {active && (
+                        <motion.span
+                          className="absolute inset-0 bg-gradient-to-r from-mint/10 to-transparent"
+                          layoutId="scenario-card-active"
+                          transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                        />
+                      )}
+                      <p
+                        className={`relative font-mono text-[0.65rem] uppercase tracking-[0.24em] ${
+                          active ? "text-mint" : "text-mint/70"
+                        }`}
+                      >
+                        {item.id}
+                      </p>
+                      <h4 className="relative mt-2 font-[family-name:var(--font-display)] text-xl text-cream">
+                        {item.title}
+                      </h4>
+                      <p className="relative mt-3 text-sm leading-relaxed text-arch/75">
+                        {item.body}
+                      </p>
+                    </motion.button>
+                  );
+                })}
               </div>
             </div>
 
