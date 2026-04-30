@@ -7,7 +7,6 @@ import { TreeDeciduous, Building2 } from "lucide-react";
 import { GlassNav } from "./GlassNav";
 import { LineRaceEmbed } from "./LineRaceEmbed";
 import { HeroAtmosphere } from "./HeroAtmosphere";
-import { DRIVE, drivePreviewUrl } from "@/lib/googleDrive";
 import { MethodologyAccordion } from "./MethodologyAccordion";
 import { ScenarioControlDeck } from "./ScenarioControlDeck";
 import { MindMapResearchSpine } from "./MindMapResearchSpine";
@@ -424,27 +423,17 @@ export function PortfolioContent() {
               <div className="border-b border-mint/20 bg-gradient-to-r from-black/50 via-mint/[0.08] to-black/50 px-4 py-3 text-center text-sm font-semibold text-mint">
                 Live demo
               </div>
-              <iframe
-                title="GAMA live demo"
+              <video
                 className="aspect-video min-h-[420px] w-full bg-black"
-                src={drivePreviewUrl(DRIVE.gamaDemo)}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                allowFullScreen
+                src={withBasePath("/gama.mp4")}
+                controls
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="GAMA live demo"
               />
             </motion.div>
-            <p className="mt-3 text-center text-xs text-arch/45">
-              Hosted on Google Drive —{" "}
-              <a
-                className="text-mint/85 underline decoration-mint/35"
-                href={drivePreviewUrl(DRIVE.gamaDemo)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open in new tab
-              </a>{" "}
-              if the embed is blocked.
-            </p>
           </div>
         </section>
 

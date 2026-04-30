@@ -33,7 +33,7 @@ const steps = [
 ];
 
 export function ConsensusAction() {
-  const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [activeStep, setActiveStep] = useState<number | null>(steps[0].id);
 
   const active = steps.find((s) => s.id === activeStep);
 

@@ -9,33 +9,12 @@ import {
   styleFitContainer,
 } from "react-compare-slider";
 import { MapPin, Sparkles } from "lucide-react";
-import { AfterMedia } from "./AfterMedia";
-import { DRIVE, driveFileIdFromUserInput, drivePreviewUrl } from "@/lib/googleDrive";
 import { withBasePath } from "@/lib/withBasePath";
 
 const BEFORE = withBasePath("/bond-245-before.png");
-const AFTER_IMG = withBasePath("/bond-245-after.png");
+const AFTER_IMG = withBasePath("/sidewalk.png");
 
-type Props = {
-  afterVideoSrc?: string | null;
-  useAfterVideo?: boolean;
-};
-
-function resolveAfterVideo(explicit?: string | null) {
-  if (explicit !== undefined && explicit !== null && explicit !== "")
-    return explicit;
-  const fromEnv = process.env.NEXT_PUBLIC_BOND_AFTER_VIDEO;
-  if (fromEnv && fromEnv.length > 0) return fromEnv;
-  return DRIVE.bondAfter;
-}
-
-
-export function BondStreetCompare({ afterVideoSrc, useAfterVideo = true }: Props) {
-  const raw = resolveAfterVideo(afterVideoSrc);
-  const hasMedia =
-    useAfterVideo && Boolean(raw && (driveFileIdFromUserInput(raw) || raw.startsWith("/") || raw.startsWith("http")));
-
-
+export function BondStreetCompare() {
   return (
     <motion.div
       className="relative w-full"
@@ -81,35 +60,17 @@ export function BondStreetCompare({ afterVideoSrc, useAfterVideo = true }: Props
             />
           }
           itemTwo={
-            hasMedia && raw ? (
-              <AfterMedia videoSrc={raw} />
-            ) : (
-              <ReactCompareSliderImage
-                src={AFTER_IMG}
-                alt="Reimagined Bond Street with enhanced greenery"
-                style={styleFitContainer({ objectPosition: "center" })}
-              />
-            )
+            <ReactCompareSliderImage
+              src={AFTER_IMG}
+              alt="Reimagined Bond Street with enhanced greenery"
+              style={styleFitContainer({ objectPosition: "center" })}
+            />
           }
         />
       </div>
 
       <p className="mt-3 text-center text-xs text-cream/40">
-        {hasMedia && raw ? (
-          <>
-            After:{" "}
-            <a
-              className="text-mint/85 underline decoration-mint/30 hover:text-cream"
-              href={drivePreviewUrl(driveFileIdFromUserInput(raw) || DRIVE.bondAfter)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open in Google Drive
-            </a>
-          </>
-        ) : (
-          <>After: static image</>
-        )}
+        After: sidewalk design rendering
       </p>
     </motion.div>
   );
