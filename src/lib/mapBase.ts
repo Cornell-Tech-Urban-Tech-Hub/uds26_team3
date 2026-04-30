@@ -274,7 +274,7 @@ export function extractPolygons(data: FeatureCollection): [number, number][][] {
 
 function mergePolygons(data: FeatureCollection): [number, number][][] {
   try {
-    const flattened = flatten(data) as FeatureCollection<GeoJSON.Polygon>;
+    const flattened = flatten(data) as GeoJSON.FeatureCollection<GeoJSON.Polygon>;
     const dissolved = dissolve(flattened);
     return extractPolygons(dissolved as unknown as FeatureCollection);
   } catch {
