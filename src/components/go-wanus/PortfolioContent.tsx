@@ -241,7 +241,7 @@ export function PortfolioContent() {
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="mb-4 font-mono text-xs uppercase tracking-[0.4em] text-mint/75">
-                Gowanus BID · Urban systems research
+                Gowanus BID · Urban Design Strategies and Case Studies
               </p>
               <h1 className="font-[family-name:var(--font-display)] text-5xl font-light leading-[1.03] text-arch sm:text-6xl md:text-7xl lg:text-[5.2rem]">
                 GO-Wanus Green:{" "}
